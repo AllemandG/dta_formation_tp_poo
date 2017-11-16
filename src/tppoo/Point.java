@@ -1,6 +1,6 @@
 package tppoo;
 
-public class Point {
+public class Point implements Comparable<Point>{
 	private static final int INIT_X = 25; // Tp 11
 	private static final int INIT_Y = 25; // Tp 11
 	
@@ -20,6 +20,11 @@ public class Point {
 	 * Methodes
 	 */
 	
+	public void deplace (int deltaX, int deltaY) {
+		setCoordX(getX()+deltaX);
+		setCoordY(getY()+deltaY);
+	}
+	
 	public String toString () {
 		return ("["+ coordX +";"+ coordY +"]");
 	}
@@ -27,7 +32,7 @@ public class Point {
 	public boolean equals(Object o) {
 		if (o instanceof Point) {
 			Point p = (Point) o;
-			return ( (this.getX() == p.getX()) && (this.getY() == p.getY()) );
+			return ( compareTo(p) == 0 );
 		} else {
 			return false;
 		}
@@ -39,6 +44,10 @@ public class Point {
 		distY = Math.pow( (p.getY() - getY()), 2 );
 		int dist = (int) Math.round( Math.sqrt(distX + distY) );
 		return dist;
+	}
+	
+	public int hashCode () {
+		return ( getX() * 100 + getY());
 	}
 	
 	/*
@@ -58,6 +67,18 @@ public class Point {
 
 	protected void setCoordY(int coordY) {
 		this.coordY = coordY;
+	}
+
+	@Override
+	public int compareTo(Point p) {
+		if ( (this.getX() > p.getX()) && (this.getY() > p.getY()) ) {
+			return 1;
+		} else if ((this.getX() < p.getX()) && (this.getY() < p.getY())) {
+			return -1;
+		} else {
+			return 0;
+		}
+			
 	}
 	
 	

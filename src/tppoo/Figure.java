@@ -1,5 +1,7 @@
 package tppoo;
 
+import java.util.Collection;
+
 public abstract class Figure {
 	/*
 	 * pourrait etre modifié pour que
@@ -20,9 +22,13 @@ public abstract class Figure {
 		System.out.println(toString());
 	}
 	
+	public abstract boolean couvrePoint(Point p);
+	
 	public abstract int nbPoints();
 	
-	public abstract Point[] getPointsFigure();
+	public abstract int getTypeInt();
+	
+	public abstract Collection<Point> getPoints();
 	
 	/*
 	 * Accesseurs
